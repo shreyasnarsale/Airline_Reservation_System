@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from bson.objectid import ObjectId
 
-import bcrypt # type: ignore
+# import bcrypt # type: ignore
 from django.shortcuts import render, redirect
 from pymongo import MongoClient
 from django.http import HttpResponseForbidden, HttpResponse

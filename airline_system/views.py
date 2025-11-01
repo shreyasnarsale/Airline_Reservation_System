@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect, HttpResponse
 from functools import wraps
-from pymongo.errors import ConnectionError, ConfigurationError
+from pymongo.errors import ServerSelectionTimeoutError, ConfigurationError
 
 import razorpay
 from django.conf import settings
@@ -17,7 +17,7 @@ try:
     # Use the connection string from MongoDB Atlas
     client = MongoClient("mongodb+srv://youtubepy:youtubepy@cluster0.hlekbr4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     db = client['airline_reservation_system']
-except (ConnectionError, ConfigurationError) as e:
+except (ServerSelectionTimeoutError, ConfigurationError) as e:
     # Log the error and provide a response
     print("MongoDB Connection Error:", e)
     db = None  # Set db to None if there's a connection issue
